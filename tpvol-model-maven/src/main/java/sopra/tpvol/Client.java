@@ -2,19 +2,41 @@ package sopra.tpvol;
 
 import java.util.ArrayList;
 
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Transient;
+import javax.persistence.Version;
+
+@Entity // obligatoire
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="disc")
 public class Client {
+	@Id // obligatoire
+	@GeneratedValue // optionnel
+	private Long id;
+	@Version
+	private int version;
+	@Column(nullable = false)
 	private String nom;
+	@Column(nullable = false)
 	private String type;
+	@Column(nullable = false)
 	private String mail;
 	private String telephone;
-	private int numeroAdresse;
-	private String rue;
-	private String complementAdresse;
-	private int codePostal;
-	private String ville;
-	private String pays;
+	@Transient
+	private Adresse adresse;
+	@OneToOne
 	private Utilisateur utilisateur;
+	@OneToMany(mappedBy="client")
 	private ArrayList<Reservation> reservations = new ArrayList<Reservation>();
+	@OneToMany(mappedBy="client")
 	private ArrayList<Passager> passagers = new ArrayList<Passager>();
 
 	public Client() {
@@ -24,6 +46,23 @@ public class Client {
 	public Client(String nom) {
 		super();
 		this.nom = nom;
+	}
+
+	
+	
+	public Client(String nom, String mail, String telephone) {
+		super();
+		this.nom = nom;
+		this.mail = mail;
+		this.telephone = telephone;
+	}
+
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
 	}
 
 	public String getNom() {
@@ -58,52 +97,13 @@ public class Client {
 		this.telephone = telephone;
 	}
 
-	public int getNumeroAdresse() {
-		return numeroAdresse;
+
+	public Adresse getAdresse() {
+		return adresse;
 	}
 
-	public void setNumeroAdresse(int numeroAdresse) {
-		this.numeroAdresse = numeroAdresse;
-	}
-
-	public String getRue() {
-		return rue;
-	}
-
-	public void setRue(String rue) {
-		this.rue = rue;
-	}
-
-	public String getComplementAdresse() {
-		return complementAdresse;
-	}
-
-	public void setComplementAdresse(String complementAdresse) {
-		this.complementAdresse = complementAdresse;
-	}
-
-	public int getCodePostal() {
-		return codePostal;
-	}
-
-	public void setCodePostal(int codePostal) {
-		this.codePostal = codePostal;
-	}
-
-	public String getVille() {
-		return ville;
-	}
-
-	public void setVille(String ville) {
-		this.ville = ville;
-	}
-
-	public String getPays() {
-		return pays;
-	}
-
-	public void setPays(String pays) {
-		this.pays = pays;
+	public void setAdresse(Adresse adresse) {
+		this.adresse = adresse;
 	}
 
 	public Utilisateur getUtilisateur() {
@@ -140,10 +140,12 @@ public class Client {
 
 	@Override
 	public String toString() {
-		return "Client [nom=" + nom + ", type=" + type + ", mail=" + mail + ", telephone=" + telephone
-				+ ", numeroAdresse=" + numeroAdresse + ", rue=" + rue + ", complementAdresse=" + complementAdresse
-				+ ", codePostal=" + codePostal + ", ville=" + ville + ", pays=" + pays + ", utilisateur=" + utilisateur
-				+ "]";
+		return "Client [version=" + version + ", nom=" + nom + ", type=" + type + ", mail=" + mail
+				+ ", telephone=" + telephone + ", adresse=" + adresse + ", utilisateur=" + utilisateur
+				+ ", reservations=" + reservations + ", passagers=" + passagers + "]";
 	}
+
+	
+
 
 }

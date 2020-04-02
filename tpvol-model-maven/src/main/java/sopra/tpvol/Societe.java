@@ -1,12 +1,33 @@
 package sopra.tpvol;
 
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
+
+@DiscriminatorValue("societe")
 public class Societe extends Client {
+	@Column(nullable = false)
 	private String siret;
 	private String numeroDeTva;
 
 	public Societe() {
 		super();
 	}
+
+	
+	
+	public Societe(String siret) {
+		super();
+		this.siret = siret;
+	}
+
+
+
+	public Societe(String nom, String mail, String telephone, String Siret) {
+		super(nom, mail, telephone);
+		this.siret = siret;
+	}
+
+
 
 	public String getSiret() {
 		return siret;
@@ -24,9 +45,13 @@ public class Societe extends Client {
 		this.numeroDeTva = numeroDeTva;
 	}
 
+
+
 	@Override
 	public String toString() {
-		return "Societe [siret=" + siret + ", numeroDeTva=" + numeroDeTva + "]";
+		return "Societe [siret=" + siret + ", numeroDeTva=" + numeroDeTva + ", toString()=" + super.toString() + "]";
 	}
+
+
 
 }

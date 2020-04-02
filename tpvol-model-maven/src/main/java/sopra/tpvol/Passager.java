@@ -3,6 +3,9 @@ package sopra.tpvol;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 public class Passager {
 	private String nom;
 	private String prenom;
@@ -13,6 +16,8 @@ public class Passager {
 	private Date dateValiditePasseport;
 	private String typePieceIdentite;
 	private Boolean handicap;
+	@ManyToOne
+	@JoinColumn(name="client_id")
 	private Client client;
 	private ArrayList<Reservation> reservations = new ArrayList<Reservation>();
 

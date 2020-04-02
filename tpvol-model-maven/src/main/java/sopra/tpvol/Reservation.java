@@ -1,5 +1,8 @@
 package sopra.tpvol;
 
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 public class Reservation {
 	private Boolean annulee;
 	private Boolean confirmee;
@@ -8,6 +11,8 @@ public class Reservation {
 	private Paiement paiement;
 	private Trajet trajet;
 	private Passager passager;
+	@ManyToOne
+	@JoinColumn(name="client_id")
 	private Client client;
 
 	public Reservation() {
