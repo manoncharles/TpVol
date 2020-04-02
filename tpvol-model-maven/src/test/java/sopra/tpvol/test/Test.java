@@ -46,39 +46,28 @@ public class Test {
 		
 				
 		Utilisateur uti2 = new Utilisateur();
-		uti2.setIdentifiant("identifiant2");
-		uti2.setMotDePasse("mdp2");
-
-		Particulier part1 = new Particulier();
-		part1.setPrenom("Nicolas");
-
-		Societe soc1 = new Societe();
-		soc1.setSiret("80502074000173");
-		soc1.setNumeroDeTva("FR 01234567891");
-
-		Client client1 = new Client("CHARLES");
-		client1.setType("Particulier");
-		client1.setMail("mailparticulier@gmail.com");
-		client1.setTelephone("00.11.22.33.44");
-		client1.setNumeroAdresse(21);
-		client1.setRue("avenue col Pierre Bourgoin");
-		client1.setComplementAdresse("résidence M.C");
-		client1.setCodePostal(33127);
-		client1.setVille("Martignas");
-		client1.setPays("France");
-		client1.setUtilisateur(uti1);
-
-		Client client2 = new Client("SOPRA STERIA");
-		client2.setType("Société");
-		client2.setMail("mailsociété@gmail.com");
-		client2.setTelephone("00.11.22.33.44");
-		client2.setNumeroAdresse(20);
-		client2.setRue("avenue Pythagore");
-		client2.setComplementAdresse(null);
-		client2.setCodePostal(33700);
-		client2.setVille("Mérignac");
-		client2.setPays("France");
-		client2.setUtilisateur(uti2);
+		uti2.setIdentifiant("id Sopra");
+		uti2.setMotDePasse("mdp Sopra");
+		
+		Societe societe1 = new Societe ("80502074000173");
+		societe1.setType("société");
+		societe1.setNom("SOPRA STERIA");
+		societe1.setMail("mail@sopra-steria.com");
+		societe1.setTelephone("00.44.33.22.11");
+		societe1.setNumeroDeTva("SS123456TVA");
+		
+		Adresse adrS1 = new Adresse ("20 avenue Pythagore", " ", "33700", "Mérignac", "France");
+		
+		societe1.setAdresse(adrS1);
+		
+		societe1.setUtilisateur(uti2);
+		
+		System.out.println(societe1);
+		
+		uti2.setClient(societe1);
+		
+		System.out.println(uti2);
+		
 
 		Passager pass1 = new Passager("CHARLES");
 		pass1.setPrenom("Manon");
