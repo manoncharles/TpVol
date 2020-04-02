@@ -4,3 +4,11 @@ TpVol/.classpath
 TpVol/.project
 
 TpVol/.settings/org.eclipse.jdt.core.prefs
+
+tpvol-persistence-maven/.settings/org.eclipse.jdt.core.prefs
+
+tpvol-persistence-maven/.settings/org.eclipse.wst.common.project.facet.core.xml
+
+tpvol-persistence-maven/.settings/org.eclipse.wst.common.project.facet.core.prefs.xml
+
+tpvol-persistence-maven/.classpath

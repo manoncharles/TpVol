@@ -1,12 +1,31 @@
 package sopra.tpvol;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+
+@Entity
 public class Aeroport {
+	@Id
+	@GeneratedValue
+	private Long id;
+	private int Version;
+	@Column(nullable = false, length = 100)
 	private String nom;
-	private ArrayList<Depart> departs = new ArrayList<Depart>();
-	private ArrayList<Arrivee> arrivees = new ArrayList<Arrivee>();
-	private ArrayList<Ville> villes = new ArrayList<Ville>();
+	@OneToMany(mappedBy = "aeroport")
+	private List<Depart> departs = new ArrayList<Depart>();
+	@OneToMany(mappedBy = "aeroport")
+	private List<Arrivee> arrivees = new ArrayList<Arrivee>();
+	@ManyToMany
+	@JoinColumn(name = "ville_id")
+	private List<Ville> villes = new ArrayList<Ville>();
 
 	public Aeroport() {
 		super();
@@ -17,6 +36,28 @@ public class Aeroport {
 		this.nom = nom;
 	}
 
+	public Aeroport(Long id, String nom) {
+		super();
+		this.id = id;
+		this.nom = nom;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public int getVersion() {
+		return Version;
+	}
+
+	public void setVersion(int version) {
+		Version = version;
+	}
+
 	public String getNom() {
 		return nom;
 	}
@@ -25,11 +66,11 @@ public class Aeroport {
 		this.nom = nom;
 	}
 
-	public ArrayList<Depart> getDeparts() {
+	public List<Depart> getDeparts() {
 		return departs;
 	}
 
-	public void setDeparts(ArrayList<Depart> departs) {
+	public void setDeparts(List<Depart> departs) {
 		this.departs = departs;
 	}
 
@@ -38,11 +79,11 @@ public class Aeroport {
 
 	}
 
-	public ArrayList<Arrivee> getArrivees() {
+	public List<Arrivee> getArrivees() {
 		return arrivees;
 	}
 
-	public void setArrivees(ArrayList<Arrivee> arrivees) {
+	public void setArrivees(List<Arrivee> arrivees) {
 		this.arrivees = arrivees;
 	}
 
@@ -50,7 +91,7 @@ public class Aeroport {
 		this.arrivees.add(arrivees);
 	}
 
-	public ArrayList<Ville> getVilles() {
+	public List<Ville> getVilles() {
 		return villes;
 	}
 
@@ -66,7 +107,5 @@ public class Aeroport {
 	public String toString() {
 		return "Aeroport [nom=" + nom + ", villes=" + villes + "]";
 	}
-
-	
 
 }

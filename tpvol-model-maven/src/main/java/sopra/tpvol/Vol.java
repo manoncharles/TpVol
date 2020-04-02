@@ -1,18 +1,75 @@
 package sopra.tpvol;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+
+@Entity
 public class Vol {
+	@Id
+	@GeneratedValue
+	private Long id;
+	private int Version;
+	@Column(nullable = false, length = 100)
 	private String numeroDeVol;
+	@Column(nullable = false)
 	private Boolean ouvert;
+	@ManyToOne
+	@JoinColumn(name = "compagnie_id")
 	private Compagnie compagnie;
+	@ManyToOne
+	@JoinColumn(name = "avion_id")
 	private Avion avion;
+	@OneToOne
+	@JoinColumn(name = "depart_id")
 	private Depart depart;
+	@OneToOne
+	@JoinColumn(name = "arrivee_id")
 	private Arrivee arrivee;
-	private ArrayList<Trajet> trajets = new ArrayList<Trajet>();
+	@ManyToMany
+	@JoinColumn(name = "trajet_id")
+	private List<Trajet> trajets = new ArrayList<Trajet>();
 
 	public Vol() {
 		super();
+	}
+
+	public Vol(String numeroDeVol, Boolean ouvert) {
+		super();
+		this.numeroDeVol = numeroDeVol;
+		this.ouvert = ouvert;
+	}
+
+	public Vol(Long id, String numeroDeVol, Boolean ouvert) {
+		super();
+		this.id = id;
+		this.numeroDeVol = numeroDeVol;
+		this.ouvert = ouvert;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public int getVersion() {
+		return Version;
+	}
+
+	public void setVersion(int version) {
+		Version = version;
 	}
 
 	public String getNumeroDeVol() {
@@ -63,11 +120,11 @@ public class Vol {
 		this.arrivee = arrivee;
 	}
 
-	public ArrayList<Trajet> getTrajets() {
+	public List<Trajet> getTrajets() {
 		return trajets;
 	}
 
-	public void setTrajets(ArrayList<Trajet> trajets) {
+	public void setTrajets(List<Trajet> trajets) {
 		this.trajets = trajets;
 	}
 

@@ -1,10 +1,24 @@
 package sopra.tpvol;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+@Entity
 public class Compagnie {
+	@Id
+	@GeneratedValue
+	private Long id;
+	private int Version;
+	@Column(nullable = false, length = 100)
 	private String nom;
-	private ArrayList<Vol> vols = new ArrayList<Vol>();
+	@OneToMany(mappedBy = "compagnie")
+	private List<Vol> vols = new ArrayList<Vol>();
 
 	public Compagnie() {
 		super();
@@ -15,6 +29,28 @@ public class Compagnie {
 		this.nom = nom;
 	}
 
+	public Compagnie(Long id, String nom) {
+		super();
+		this.id = id;
+		this.nom = nom;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public int getVersion() {
+		return Version;
+	}
+
+	public void setVersion(int version) {
+		Version = version;
+	}
+
 	public String getNom() {
 		return nom;
 	}
@@ -23,11 +59,11 @@ public class Compagnie {
 		this.nom = nom;
 	}
 
-	public ArrayList<Vol> getVols() {
+	public List<Vol> getVols() {
 		return vols;
 	}
 
-	public void setVols(ArrayList<Vol> vols) {
+	public void setVols(List<Vol> vols) {
 		this.vols = vols;
 	}
 
@@ -39,5 +75,5 @@ public class Compagnie {
 	public String toString() {
 		return "Compagnie [nom=" + nom + "]";
 	}
-	
+
 }
