@@ -78,7 +78,7 @@ public class Test {
 		pass1.setDateValiditeID(new Date());
 		pass1.setTypeID(TypeID.PASSEPORT);
 		pass1.setHandicap(false);
-		pass1.setClient(client1);
+		pass1.setClient(particulier1);
 
 		Passager pass2 = new Passager("SULTAN");
 		pass2.setPrenom("Eric");
@@ -89,7 +89,7 @@ public class Test {
 		pass2.setDateValiditeID(new Date());
 		pass2.setTypeID(TypeID.PASSEPORT);
 		pass2.setHandicap(false);
-		pass2.setClient(client2);
+		pass2.setClient(societe1);
 
 		Paiement p1 = new Paiement();
 		p1.setMontant(249.99f);
