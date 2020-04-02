@@ -1,4 +1,4 @@
-package TpVolEntrainement;
+package sopra.tpvol;
 
 public class Reservation {
 	private Boolean annulee;

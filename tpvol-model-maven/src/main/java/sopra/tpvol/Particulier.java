@@ -1,4 +1,4 @@
-package TpVolEntrainement;
+package sopra.tpvol;
 
 public class Particulier extends Client {
 	private String prenom;

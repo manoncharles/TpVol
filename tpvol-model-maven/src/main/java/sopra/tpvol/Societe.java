@@ -1,4 +1,4 @@
-package TpVolEntrainement;
+package sopra.tpvol;
 
 public class Societe extends Client {
 	private String siret;

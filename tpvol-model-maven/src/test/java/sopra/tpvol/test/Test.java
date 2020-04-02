@@ -1,6 +1,22 @@
-package TpVolEntrainement;
+package sopra.tpvol.test;
 
 import java.util.Date;
+
+import sopra.tpvol.Aeroport;
+import sopra.tpvol.Arrivee;
+import sopra.tpvol.Avion;
+import sopra.tpvol.Client;
+import sopra.tpvol.Compagnie;
+import sopra.tpvol.Depart;
+import sopra.tpvol.Paiement;
+import sopra.tpvol.Particulier;
+import sopra.tpvol.Passager;
+import sopra.tpvol.Reservation;
+import sopra.tpvol.Societe;
+import sopra.tpvol.Trajet;
+import sopra.tpvol.Utilisateur;
+import sopra.tpvol.Ville;
+import sopra.tpvol.Vol;
 
 public class Test {
 	public static void main(String[] args) {
