@@ -6,6 +6,7 @@ import sopra.tpvol.Adresse;
 import sopra.tpvol.Aeroport;
 import sopra.tpvol.Arrivee;
 import sopra.tpvol.Avion;
+import sopra.tpvol.Civilite;
 import sopra.tpvol.Client;
 import sopra.tpvol.Compagnie;
 import sopra.tpvol.Depart;
@@ -15,6 +16,8 @@ import sopra.tpvol.Passager;
 import sopra.tpvol.Reservation;
 import sopra.tpvol.Societe;
 import sopra.tpvol.Trajet;
+import sopra.tpvol.TypeID;
+import sopra.tpvol.TypePaiement;
 import sopra.tpvol.Utilisateur;
 import sopra.tpvol.Ville;
 import sopra.tpvol.Vol;
@@ -43,8 +46,126 @@ public class Test {
 		
 				
 		Utilisateur uti2 = new Utilisateur();
-		uti2.setIdentifiant("id Sopra");
-		uti2.setMotDePasse("mdp Sopra");
+		uti2.setIdentifiant("identifiant2");
+		uti2.setMotDePasse("mdp2");
+
+		Particulier part1 = new Particulier();
+		part1.setPrenom("Nicolas");
+
+		Societe soc1 = new Societe();
+		soc1.setSiret("80502074000173");
+		soc1.setNumeroDeTva("FR 01234567891");
+
+		Client client1 = new Client("CHARLES");
+		client1.setType("Particulier");
+		client1.setMail("mailparticulier@gmail.com");
+		client1.setTelephone("00.11.22.33.44");
+		client1.setNumeroAdresse(21);
+		client1.setRue("avenue col Pierre Bourgoin");
+		client1.setComplementAdresse("résidence M.C");
+		client1.setCodePostal(33127);
+		client1.setVille("Martignas");
+		client1.setPays("France");
+		client1.setUtilisateur(uti1);
+
+		Client client2 = new Client("SOPRA STERIA");
+		client2.setType("Société");
+		client2.setMail("mailsociété@gmail.com");
+		client2.setTelephone("00.11.22.33.44");
+		client2.setNumeroAdresse(20);
+		client2.setRue("avenue Pythagore");
+		client2.setComplementAdresse(null);
+		client2.setCodePostal(33700);
+		client2.setVille("Mérignac");
+		client2.setPays("France");
+		client2.setUtilisateur(uti2);
+
+		Passager pass1 = new Passager("CHARLES");
+		pass1.setPrenom("Manon");
+		pass1.setDateDeNaissance(new Date());
+		pass1.setNationalite("Française");
+		pass1.setCivilite(Civilite.MME);
+		pass1.setNumeroID("AZ1234567");
+		pass1.setDateValiditeID(new Date());
+		pass1.setTypeID(TypeID.PASSEPORT);
+		pass1.setHandicap(false);
+		pass1.setClient(client1);
+
+		Passager pass2 = new Passager("SULTAN");
+		pass2.setPrenom("Eric");
+		pass2.setDateDeNaissance(new Date());
+		pass2.setNationalite("Française");
+		pass2.setCivilite(Civilite.M);
+		pass2.setNumeroID("AZ2345678");
+		pass2.setDateValiditeID(new Date());
+		pass2.setTypeID(TypeID.PASSEPORT);
+		pass2.setHandicap(false);
+		pass2.setClient(client2);
+
+		Paiement p1 = new Paiement();
+		p1.setMontant(249.99f);
+		p1.setTypePaiement(TypePaiement.CB);
+
+		Reservation resa1 = new Reservation();
+		resa1.setNumeroDeReservation("AZ123");
+		resa1.setOuverte(true);
+		resa1.setConfirmee(true);
+		resa1.setAnnulee(false);
+		resa1.setPassager(pass1);
+		resa1.setPaiement(p1);
+		resa1.setClient(client1);
+
+		System.out.println(resa1);
+
+		Paiement p2 = new Paiement();
+		p2.setMontant(699.99f);
+		p2.setTypePaiement(TypePaiement.VIREMENT);
+
+		Reservation resa2 = new Reservation();
+		resa2.setNumeroDeReservation("AZ456");
+		resa2.setOuverte(true);
+		resa2.setConfirmee(true);
+		resa2.setAnnulee(false);
+		resa2.setPassager(pass2);
+		resa2.setPaiement(p2);
+		resa2.setClient(client2);
+
+		System.out.println(resa2);
+
+// Partie Vol et trajet
+		Compagnie comp1 = new Compagnie("Air France");
+		Compagnie comp2 = new Compagnie("Air Austral");
+
+		Avion a380 = new Avion("Airbus 380");
+		Avion b747 = new Avion("Boeing 747");
+
+		Ville paris = new Ville("Paris");
+		paris.setPays("France");
+		Ville saintDenis = new Ville("Saint-Denis");
+		saintDenis.setPays("Réunion");
+		Ville mamoudzou = new Ville("Mamoudzou");
+		mamoudzou.setPays("Mayotte");
+
+		Aeroport roissy = new Aeroport("Roissy Charles de Gaulle");
+		paris.addAeroport(roissy);
+		roissy.addVille(paris);
+
+		Aeroport roland = new Aeroport("Roland Garros");
+		saintDenis.addAeroport(roland);
+		roland.addVille(saintDenis);
+
+		Aeroport dzaoudzi = new Aeroport("Mamoudzou-Pamandzi");
+		mamoudzou.addAeroport(dzaoudzi);
+		dzaoudzi.addVille(mamoudzou);
+
+// Paris-Mayotte en vol direct 		
+		Trajet direct = new Trajet();
+
+		Vol parisMamoudzou = new Vol();
+		parisMamoudzou.setNumeroDeVol("AZ 123");
+		parisMamoudzou.setCompagnie(comp1);
+		parisMamoudzou.setOuvert(true);
+		parisMamoudzou.setAvion(a380);
 		
 		Societe societe1 = new Societe ("80502074000173");
 		societe1.setType("société");

@@ -3,23 +3,51 @@ package sopra.tpvol;
 import java.util.ArrayList;
 import java.util.Date;
 
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.Version;
+import javax.validation.constraints.NotEmpty;
 
+@Entity // obligatoire
+@Table
 public class Passager {
+	@Id // obligatoire
+	@GeneratedValue // optionnel
+	private Long id;
+	@NotEmpty
 	private String nom;
 	private String prenom;
+	@NotEmpty
 	private Date dateDeNaissance;
+	@NotEmpty
 	private String nationalite;
-	private String sexe;
-	private String numeroPasseport;
-	private Date dateValiditePasseport;
-	private String typePieceIdentite;
+	@NotEmpty
+	@Enumerated(EnumType.STRING)
+	private Civilite civilite;
+	@NotEmpty
+	private String numeroID;
+	@NotEmpty
+	@Temporal(TemporalType.DATE)
+	private Date dateValiditeID;
+	@NotEmpty
+	@Enumerated(EnumType.STRING)
+	private TypeID typeID;
+	@NotEmpty
 	private Boolean handicap;
-	@ManyToOne
-	@JoinColumn(name="client_id")
+//	@ManyToOne
+//	@JoinColumn(name= "client_id")
 	private Client client;
+	//@OneToMany(mappedBy = "passager")
 	private ArrayList<Reservation> reservations = new ArrayList<Reservation>();
+	@Version
+	private int version;
 
 	public Passager() {
 		super();
@@ -62,36 +90,54 @@ public class Passager {
 		this.nationalite = nationalite;
 	}
 
-	public String getSexe() {
-		return sexe;
+	
+
+	public Long getId() {
+		return id;
 	}
 
-	public void setSexe(String sexe) {
-		this.sexe = sexe;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
-	public String getNumeroPasseport() {
-		return numeroPasseport;
+	public Civilite getCivilite() {
+		return civilite;
 	}
 
-	public void setNumeroPasseport(String numeroPasseport) {
-		this.numeroPasseport = numeroPasseport;
+	public void setCivilite(Civilite civilite) {
+		this.civilite = civilite;
 	}
 
-	public Date getDateValiditePasseport() {
-		return dateValiditePasseport;
+	public String getNumeroID() {
+		return numeroID;
 	}
 
-	public void setDateValiditePasseport(Date dateValiditePasseport) {
-		this.dateValiditePasseport = dateValiditePasseport;
+	public void setNumeroID(String numeroID) {
+		this.numeroID = numeroID;
 	}
 
-	public String getTypePieceIdentite() {
-		return typePieceIdentite;
+	public Date getDateValiditeID() {
+		return dateValiditeID;
 	}
 
-	public void setTypePieceIdentite(String typePieceIdentite) {
-		this.typePieceIdentite = typePieceIdentite;
+	public void setDateValiditeID(Date dateValiditeID) {
+		this.dateValiditeID = dateValiditeID;
+	}
+
+	public TypeID getTypeID() {
+		return typeID;
+	}
+
+	public void setTypeID(TypeID typeID) {
+		this.typeID = typeID;
+	}
+
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
 	}
 
 	public Boolean getHandicap() {
@@ -124,10 +170,11 @@ public class Passager {
 
 	@Override
 	public String toString() {
-		return "Passager [nom=" + nom + ", prenom=" + prenom + ", dateDeNaissance=" + dateDeNaissance + ", nationalite="
-				+ nationalite + ", sexe=" + sexe + ", numeroPasseport=" + numeroPasseport + ", dateValiditePasseport="
-				+ dateValiditePasseport + ", typePieceIdentite=" + typePieceIdentite + ", handicap=" + handicap
-				+ "]";
+		return "Passager [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", dateDeNaissance=" + dateDeNaissance
+				+ ", nationalite=" + nationalite + ", civilite=" + civilite + ", numeroID=" + numeroID
+				+ ", dateValiditeID=" + dateValiditeID + ", typeID=" + typeID + ", handicap=" + handicap + "]";
 	}
+
+	
 
 }

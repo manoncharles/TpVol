@@ -1,19 +1,56 @@
 package sopra.tpvol;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.Version;
+import javax.validation.constraints.NotEmpty;
 
+
+@Entity // obligatoire
+@Table
 public class Reservation {
+	@Id // obligatoire
+	@GeneratedValue // optionnel
+	private Long id;
+	@Column(length = 5)
+	@NotEmpty
 	private Boolean annulee;
+	@Column(length = 5)
+	@NotEmpty
 	private Boolean confirmee;
+	@Column(length = 5)
+	@NotEmpty
 	private Boolean ouverte;
+	@NotEmpty
 	private String numeroDeReservation;
+//	@OneToOne
+//	@JoinColumn(name="payment_id")
 	private Paiement paiement;
+	//@OneToOne
+	//@JoinColumn(name="trip_id")
 	private Trajet trajet;
+//	@ManyToOne
+//	@JoinColumn(name= "passenger_id")
 	private Passager passager;
-	@ManyToOne
-	@JoinColumn(name="client_id")
+//	@ManyToOne
+//	@JoinColumn(name= "client_id")
 	private Client client;
+	@Version
+	private int version;
+
+	public Reservation(Boolean annulee,Boolean confirmee,Boolean ouverte,String numeroDeReservation) {
+		super();
+		this.annulee=annulee;
+		this.confirmee=confirmee;
+		this.ouverte=ouverte;
+		this.numeroDeReservation=numeroDeReservation;
+	}
 
 	public Reservation() {
 		super();
@@ -81,6 +118,22 @@ public class Reservation {
 
 	public void setClient(Client client) {
 		this.client = client;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
 	}
 
 	@Override
