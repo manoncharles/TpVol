@@ -17,7 +17,7 @@ public class Compagnie {
 	private Long id;
 	@Version
 	private int Version;
-	@Column(nullable = false, length = 100)
+	@Column(nullable = false)
 	private String nom;
 	@OneToMany(mappedBy = "compagnie")
 	private List<Vol> vols = new ArrayList<Vol>();

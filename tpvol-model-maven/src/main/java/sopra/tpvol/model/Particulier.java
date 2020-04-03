@@ -1,7 +1,9 @@
 package sopra.tpvol.model;
 
 import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 
+@Entity
 @DiscriminatorValue("particulier")
 public class Particulier extends Client {
 	

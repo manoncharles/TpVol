@@ -9,6 +9,8 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -43,11 +45,10 @@ public class Passager {
 	private TypeID typeID;
 	@NotEmpty
 	private Boolean handicap;
-//	@ManyToOne
-//	@JoinColumn(name= "client_id")
-	@Transient
+	@ManyToOne
+	@JoinColumn(name= "client_id")
 	private Client client;
-	// @OneToMany(mappedBy = "passager")
+	@OneToMany(mappedBy = "passager")
 	private List<Reservation> reservations = new ArrayList<Reservation>();
 	@Version
 	private int version;

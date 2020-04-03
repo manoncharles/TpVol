@@ -17,7 +17,7 @@ public class Aeroport {
 	@GeneratedValue
 	private Long id;
 	private int Version;
-	@Column(nullable = false, length = 100)
+	@Column(nullable = false)
 	private String nom;
 	@OneToMany(mappedBy = "aeroport")
 	private List<Depart> departs = new ArrayList<Depart>();

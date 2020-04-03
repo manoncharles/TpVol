@@ -1,5 +1,7 @@
 package sopra.tpvol.model;
 
+
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,6 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.persistence.Version;
 import javax.validation.constraints.NotEmpty;
 
@@ -18,28 +21,25 @@ public class Reservation {
 	@Id // obligatoire
 	@GeneratedValue // optionnel
 	private Long id;
-	@Column(length = 5)
 	@NotEmpty
 	private Boolean annulee;
-	@Column(length = 5)
 	@NotEmpty
 	private Boolean confirmee;
-	@Column(length = 5)
 	@NotEmpty
 	private Boolean ouverte;
 	@NotEmpty
 	private String numeroDeReservation;
-//	@OneToOne
-//	@JoinColumn(name="payment_id")
+	@OneToOne
+	@JoinColumn(name="paiement_id")
 	private Paiement paiement;
-	//@OneToOne
-	//@JoinColumn(name="trip_id")
+	@OneToOne
+	@JoinColumn(name="trajet_id")
 	private Trajet trajet;
-//	@ManyToOne
-//	@JoinColumn(name= "passenger_id")
+	@ManyToOne
+	@JoinColumn(name= "passenger_id")
 	private Passager passager;
-//	@ManyToOne
-//	@JoinColumn(name= "client_id")
+	@ManyToOne
+	@JoinColumn(name= "client_id")
 	private Client client;
 	@Version
 	private int version;

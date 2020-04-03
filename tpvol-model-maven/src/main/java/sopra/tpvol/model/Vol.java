@@ -18,7 +18,7 @@ public class Vol {
 	@GeneratedValue
 	private Long id;
 	private int Version;
-	@Column(nullable = false, length = 100)
+	@Column(nullable = false)
 	private String numeroDeVol;
 	@Column(nullable = false)
 	private Boolean ouvert;

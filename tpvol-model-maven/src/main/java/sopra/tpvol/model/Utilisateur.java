@@ -4,19 +4,21 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Version;
 
 @Entity // obligatoire
 public class Utilisateur {
 	@Id // obligatoire
 	@GeneratedValue // optionnel
+	private Long id;
 	@Version
 	private int version;
 	@Column(nullable = false)
 	private String identifiant;
 	@Column(nullable = false)
 	private String motDePasse;
-	
+	@OneToOne(mappedBy = "utilisateur")
 	private Client client;
 
 	public Utilisateur() {

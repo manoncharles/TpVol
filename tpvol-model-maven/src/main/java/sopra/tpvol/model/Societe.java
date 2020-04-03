@@ -2,10 +2,13 @@ package sopra.tpvol.model;
 
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.validation.constraints.NotEmpty;
 
+@Entity
 @DiscriminatorValue("societe")
 public class Societe extends Client {
-	@Column(nullable = false)
+	@NotEmpty
 	private String siret;
 	private String numeroDeTva;
 

@@ -19,14 +19,12 @@ public class Paiement {
 	@Id // obligatoire
 	@GeneratedValue // optionnel
 	private Long id;
-	@Column(length = 8)
-	@Enumerated(EnumType.STRING)
+		@Enumerated(EnumType.STRING)
 	@NotEmpty
 	private TypePaiement typePaiement;
 	@NotEmpty
 	private Float montant;
-	// @OneToOne(mappedBy = "paiement")
-	@Transient
+	@OneToOne(mappedBy = "paiement")
 	private Reservation reservation;
 	@Version
 	private int version;

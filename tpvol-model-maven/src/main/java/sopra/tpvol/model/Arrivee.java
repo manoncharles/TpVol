@@ -22,7 +22,7 @@ public class Arrivee {
 	private Date dateArrivee;
 	@ManyToOne
 	@JoinColumn(name = "aeroport_id")
-	private Aeroport Aeroport;
+	private Aeroport aeroport;
 
 	public Arrivee() {
 		super();
@@ -42,16 +42,16 @@ public class Arrivee {
 	}
 
 	public Aeroport getAeroport() {
-		return Aeroport;
+		return aeroport;
 	}
 
 	public void setAeroport(Aeroport aeroport) {
-		Aeroport = aeroport;
+		this.aeroport = aeroport;
 	}
 
 	@Override
 	public String toString() {
-		return "Arrivee [dateArrivee=" + dateArrivee + ", Aeroport=" + Aeroport + "]";
+		return "Arrivee [dateArrivee=" + dateArrivee + ", aeroport=" + aeroport + "]";
 	}
 
 }

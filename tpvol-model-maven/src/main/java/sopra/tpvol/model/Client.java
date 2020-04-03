@@ -5,11 +5,13 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Transient;
@@ -31,9 +33,10 @@ public class Client {
 	@Column(nullable = false)
 	private String mail;
 	private String telephone;
-	@Transient
+	@Embedded
 	private Adresse adresse;
 	@OneToOne
+	@JoinColumn(name="utilisateur_id")
 	private Utilisateur utilisateur;
 	@OneToMany(mappedBy = "client")
 	private List<Reservation> reservations = new ArrayList<Reservation>();
@@ -139,8 +142,7 @@ public class Client {
 	@Override
 	public String toString() {
 		return "Client [version=" + version + ", nom=" + nom + ", type=" + type + ", mail=" + mail + ", telephone="
-				+ telephone + ", adresse=" + adresse + ", utilisateur=" + utilisateur + ", reservations=" + reservations
-				+ ", passagers=" + passagers + "]";
+				+ telephone + ", adresse=" + adresse + ", utilisateur=" + utilisateur + "]";
 	}
 
 }

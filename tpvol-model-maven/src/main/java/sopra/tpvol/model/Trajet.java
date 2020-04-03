@@ -1,6 +1,7 @@
 package sopra.tpvol.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,10 +17,10 @@ public class Trajet {
 	@Id // obligatoire
 	@GeneratedValue // optionnel
 	private Long id;
-	//@OneToOne(mappedBy = "trajet")
+	@OneToOne(mappedBy = "trajet")
 	private Reservation reservation;
-	//@ManyToMany(mappedBy = "trajets")
-	private ArrayList<Vol> vols = new ArrayList<Vol>();
+	@ManyToMany(mappedBy = "trajets")
+	private List<Vol> vols = new ArrayList<Vol>();
 	@Version
 	private int version;
 
@@ -40,11 +41,11 @@ public class Trajet {
 		this.reservation = reservation;
 	}
 
-	public ArrayList<Vol> getVols() {
+	public List<Vol> getVols() {
 		return vols;
 	}
 
-	public void setVols(ArrayList<Vol> vols) {
+	public void setVols(List<Vol> vols) {
 		this.vols = vols;
 	}
 

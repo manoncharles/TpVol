@@ -15,11 +15,11 @@ public class Ville {
 	@GeneratedValue
 	private Long id;
 	private int Version;
-	@Column(nullable = false, length = 100)
+	@Column(nullable = false)
 	private String nom;
-	@Column(nullable = false, length = 100)
+	@Column(nullable = false)
 	private String pays;
-	@ManyToMany(mappedBy = "ville")
+	@ManyToMany(mappedBy = "villes")
 	private List<Aeroport> aeroports = new ArrayList<Aeroport>();
 
 	public Ville() {
