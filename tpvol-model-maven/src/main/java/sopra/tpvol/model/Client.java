@@ -1,6 +1,7 @@
 package sopra.tpvol.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
@@ -15,8 +16,8 @@ import javax.persistence.Transient;
 import javax.persistence.Version;
 
 @Entity // obligatoire
-@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="disc")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "disc")
 public class Client {
 	@Id // obligatoire
 	@GeneratedValue // optionnel
@@ -34,10 +35,10 @@ public class Client {
 	private Adresse adresse;
 	@OneToOne
 	private Utilisateur utilisateur;
-	@OneToMany(mappedBy="client")
-	private ArrayList<Reservation> reservations = new ArrayList<Reservation>();
-	@OneToMany(mappedBy="client")
-	private ArrayList<Passager> passagers = new ArrayList<Passager>();
+	@OneToMany(mappedBy = "client")
+	private List<Reservation> reservations = new ArrayList<Reservation>();
+	@OneToMany(mappedBy = "client")
+	private List<Passager> passagers = new ArrayList<Passager>();
 
 	public Client() {
 		super();
@@ -48,8 +49,6 @@ public class Client {
 		this.nom = nom;
 	}
 
-	
-	
 	public Client(String nom, String mail, String telephone) {
 		super();
 		this.nom = nom;
@@ -97,7 +96,6 @@ public class Client {
 		this.telephone = telephone;
 	}
 
-
 	public Adresse getAdresse() {
 		return adresse;
 	}
@@ -114,11 +112,11 @@ public class Client {
 		this.utilisateur = utilisateur;
 	}
 
-	public ArrayList<Reservation> getReservations() {
+	public List<Reservation> getReservations() {
 		return reservations;
 	}
 
-	public void setReservations(ArrayList<Reservation> reservations) {
+	public void setReservations(List<Reservation> reservations) {
 		this.reservations = reservations;
 	}
 
@@ -126,11 +124,11 @@ public class Client {
 		this.reservations.add(reservations);
 	}
 
-	public ArrayList<Passager> getPassagers() {
+	public List<Passager> getPassagers() {
 		return passagers;
 	}
 
-	public void setPassagers(ArrayList<Passager> passagers) {
+	public void setPassagers(List<Passager> passagers) {
 		this.passagers = passagers;
 	}
 
@@ -140,12 +138,9 @@ public class Client {
 
 	@Override
 	public String toString() {
-		return "Client [version=" + version + ", nom=" + nom + ", type=" + type + ", mail=" + mail
-				+ ", telephone=" + telephone + ", adresse=" + adresse + ", utilisateur=" + utilisateur
-				+ ", reservations=" + reservations + ", passagers=" + passagers + "]";
+		return "Client [version=" + version + ", nom=" + nom + ", type=" + type + ", mail=" + mail + ", telephone="
+				+ telephone + ", adresse=" + adresse + ", utilisateur=" + utilisateur + ", reservations=" + reservations
+				+ ", passagers=" + passagers + "]";
 	}
-
-	
-
 
 }

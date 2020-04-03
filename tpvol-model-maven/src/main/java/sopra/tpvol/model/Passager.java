@@ -2,6 +2,7 @@ package sopra.tpvol.model;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -12,6 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.persistence.Version;
 import javax.validation.constraints.NotEmpty;
 
@@ -43,9 +45,10 @@ public class Passager {
 	private Boolean handicap;
 //	@ManyToOne
 //	@JoinColumn(name= "client_id")
+	@Transient
 	private Client client;
-	//@OneToMany(mappedBy = "passager")
-	private ArrayList<Reservation> reservations = new ArrayList<Reservation>();
+	// @OneToMany(mappedBy = "passager")
+	private List<Reservation> reservations = new ArrayList<Reservation>();
 	@Version
 	private int version;
 
@@ -89,8 +92,6 @@ public class Passager {
 	public void setNationalite(String nationalite) {
 		this.nationalite = nationalite;
 	}
-
-	
 
 	public Long getId() {
 		return id;
@@ -156,11 +157,11 @@ public class Passager {
 		this.client = client;
 	}
 
-	public ArrayList<Reservation> getReservations() {
+	public List<Reservation> getReservations() {
 		return reservations;
 	}
 
-	public void setReservations(ArrayList<Reservation> reservations) {
+	public void setReservations(List<Reservation> reservations) {
 		this.reservations = reservations;
 	}
 
@@ -174,7 +175,5 @@ public class Passager {
 				+ ", nationalite=" + nationalite + ", civilite=" + civilite + ", numeroID=" + numeroID
 				+ ", dateValiditeID=" + dateValiditeID + ", typeID=" + typeID + ", handicap=" + handicap + "]";
 	}
-
-	
 
 }

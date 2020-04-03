@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import sopra.tpvol.persistence.IAeroportDao;
 import sopra.tpvol.persistence.IArriveeDao;
 import sopra.tpvol.persistence.IAvionDao;
 import sopra.tpvol.persistence.IClientDao;
@@ -33,7 +34,7 @@ public class Application {
 	private static Application instance = null;
 
 	private final EntityManagerFactory emf = Persistence.createEntityManagerFactory("tpvol");
-	
+
 	private final IArriveeDao arriveeDao = new ArriveeDao();
 	private final IDepartDao departDao = new DepartDao();
 	private final IPaiementDao paiementDao = new PaiementDao();
@@ -45,30 +46,24 @@ public class Application {
 	private final IAvionDao avionDao = new AvionDao();
 	private final IReservationDao reservationDao = new ReservationDao();
 	private final IPassagerDao passagerDao = new PassagerDao();
-	private final IParticulierDao particulierDao = new ParticulierDao();
-	private final ISocieteDao societeDao = new SocieteDao();
-	private final IUtilisateurDao utilisateurDao = new UtilisateurDao();
-	private final IVilleDao villeDao = new VilleDao();
-
+//	private final IParticulierDao particulierDao = new ParticulierDao();
+//	private final ISocieteDao societeDao = new SocieteDao();
+//	private final IUtilisateurDao utilisateurDao = new UtilisateurDao();
+//	private final IVilleDao villeDao = new VilleDao();
 
 	private Application() {
-		try {
-			Class.forName("org.postgresql.Driver");
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
+//		try {
+//			Class.forName("org.postgresql.Driver");
+//		} catch (ClassNotFoundException e) {
+//			e.printStackTrace();
+//		}
 	}
 
 	public static Application getInstance() {
 		if (instance == null) {
 			instance = new Application();
 		}
-
 		return instance;
-	}
-
-	public Connection getConnection() throws SQLException {
-		return DriverManager.getConnection("jdbc:postgresql://localhost/training", "postgres", "manager");
 	}
 
 	public EntityManagerFactory getEmf() {
@@ -86,5 +81,5 @@ public class Application {
 	public IPaiementDao getPaiementDao() {
 		return paiementDao;
 	}
-	
+
 }

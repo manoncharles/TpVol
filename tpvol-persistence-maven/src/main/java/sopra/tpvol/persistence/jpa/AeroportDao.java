@@ -2,33 +2,126 @@ package sopra.tpvol.persistence.jpa;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
+
+import sopra.tpvol.Application;
 import sopra.tpvol.model.Aeroport;
-import sopra.tpvol.model.persistence.IAeoroportDao;
+import sopra.tpvol.persistence.IAeroportDao;
 
 public class AeroportDao implements IAeroportDao {
 
 	@Override
 	public List<Aeroport> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Aeroport> aeroports = null;
+
+		EntityManager em = null;
+		EntityTransaction tx = null;
+
+		try {
+			em = Application.getInstance().getEmf().createEntityManager();
+			tx = em.getTransaction();
+			tx.begin();
+
+			TypedQuery<Aeroport> query = em.createQuery("from Aeroport", Aeroport.class);
+
+			aeroports = query.getResultList();
+
+			tx.commit();
+
+		} catch (Exception e) {
+			if (tx != null && tx.isActive()) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			if (em != null) {
+				em.close();
+			}
+		}
+
+		return aeroports;
 	}
 
 	@Override
 	public Aeroport find(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		Aeroport aeroport = null;
+
+		EntityManager em = null;
+		EntityTransaction tx = null;
+
+		try {
+			em = Application.getInstance().getEmf().createEntityManager();
+			tx = em.getTransaction();
+			tx.begin();
+
+			aeroport = em.find(Aeroport.class, id);
+
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null && tx.isActive()) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			if (em != null) {
+				em.close();
+			}
+		}
+		return aeroport;
 	}
 
 	@Override
 	public Aeroport save(Aeroport obj) {
-		// TODO Auto-generated method stub
-		return null;
+		Aeroport aeroport = null;
+
+		EntityManager em = null;
+		EntityTransaction tx = null;
+
+		try {
+			em = Application.getInstance().getEmf().createEntityManager();
+			tx = em.getTransaction();
+			tx.begin();
+
+			aeroport = em.merge(obj);
+
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null && tx.isActive()) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			if (em != null) {
+				em.close();
+			}
+		}
+		return aeroport;
 	}
 
 	@Override
 	public void delete(Aeroport obj) {
-		// TODO Auto-generated method stub
+		EntityManager em = null;
+		EntityTransaction tx = null;
 
+		try {
+			em = Application.getInstance().getEmf().createEntityManager();
+			tx = em.getTransaction();
+			tx.begin();
+
+			em.remove(em.merge(obj));
+
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null && tx.isActive()) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			if (em != null) {
+				em.close();
+			}
+		}
 	}
-
 }

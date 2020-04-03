@@ -19,13 +19,13 @@ public class Paiement {
 	@Id // obligatoire
 	@GeneratedValue // optionnel
 	private Long id;
-	@Column(length=8)
+	@Column(length = 8)
 	@Enumerated(EnumType.STRING)
 	@NotEmpty
 	private TypePaiement typePaiement;
 	@NotEmpty
 	private Float montant;
-	//@OneToOne(mappedBy = "paiement")
+	// @OneToOne(mappedBy = "paiement")
 	@Transient
 	private Reservation reservation;
 	@Version
@@ -34,10 +34,11 @@ public class Paiement {
 	public Paiement() {
 		super();
 	}
-	public Paiement(TypePaiement typePaiement,Float montant) {
+
+	public Paiement(TypePaiement typePaiement, Float montant) {
 		super();
-		this.typePaiement=typePaiement;
-		this.montant=montant;
+		this.typePaiement = typePaiement;
+		this.montant = montant;
 	}
 
 	public TypePaiement getTypePaiement() {
@@ -67,15 +68,19 @@ public class Paiement {
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 	public int getVersion() {
 		return version;
 	}
+
 	public void setVersion(int version) {
 		this.version = version;
 	}
+
 	@Override
 	public String toString() {
 		return "Paiement [typePaiement=" + typePaiement + ", montant=" + montant + "]";
