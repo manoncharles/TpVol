@@ -1,4 +1,4 @@
-package sopra.tpvol;
+package sopra.tpvol.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,41 +8,36 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Version;
 
 @Entity
-public class Avion {
+public class Compagnie {
 	@Id
 	@GeneratedValue
 	private Long id;
+	@Version
 	private int Version;
-	@Column(length = 100)
-	private String modele;
-	@OneToMany(mappedBy = "avion")
+	@Column(nullable = false, length = 100)
+	private String nom;
+	@OneToMany(mappedBy = "compagnie")
 	private List<Vol> vols = new ArrayList<Vol>();
 
-	public Avion() {
+	public Compagnie() {
 		super();
 	}
 
-	public Avion(String modele) {
+	public Compagnie(String nom) {
 		super();
-		this.modele = modele;
+		this.nom = nom;
 	}
 
-	public Avion(Long id, String modele) {
+	public Compagnie(Long id, String nom) {
 		super();
 		this.id = id;
-		this.modele = modele;
+		this.nom = nom;
 	}
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
+	
 	public int getVersion() {
 		return Version;
 	}
@@ -51,20 +46,12 @@ public class Avion {
 		Version = version;
 	}
 
-	public String getModele() {
-		return modele;
+	public String getNom() {
+		return nom;
 	}
 
-	public void setModele(String modele) {
-		this.modele = modele;
-	}
-
-	public String getAvion() {
-		return modele;
-	}
-
-	public void setAvion(String avion) {
-		this.modele = avion;
+	public void setNom(String nom) {
+		this.nom = nom;
 	}
 
 	public List<Vol> getVols() {
@@ -79,9 +66,19 @@ public class Avion {
 		this.vols.add(vols);
 	}
 
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+
+
 	@Override
 	public String toString() {
-		return "Avion [modele=" + modele + ", vols=" + vols + "]";
+		return "Compagnie [nom=" + nom + "]";
 	}
 
 }

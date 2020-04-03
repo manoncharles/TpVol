@@ -1,6 +1,6 @@
 package sopra.tpvol.persistence;
 
-import sopra.tpvol.Avion;
+import sopra.tpvol.model.Avion;
 
 public interface IAvionDao extends IDao<Avion, Long> {
 

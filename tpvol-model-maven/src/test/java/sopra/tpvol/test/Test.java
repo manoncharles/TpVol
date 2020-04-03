@@ -2,25 +2,25 @@ package sopra.tpvol.test;
 
 import java.util.Date;
 
-import sopra.tpvol.Adresse;
-import sopra.tpvol.Aeroport;
-import sopra.tpvol.Arrivee;
-import sopra.tpvol.Avion;
-import sopra.tpvol.Civilite;
-import sopra.tpvol.Client;
-import sopra.tpvol.Compagnie;
-import sopra.tpvol.Depart;
-import sopra.tpvol.Paiement;
-import sopra.tpvol.Particulier;
-import sopra.tpvol.Passager;
-import sopra.tpvol.Reservation;
-import sopra.tpvol.Societe;
-import sopra.tpvol.Trajet;
-import sopra.tpvol.TypeID;
-import sopra.tpvol.TypePaiement;
-import sopra.tpvol.Utilisateur;
-import sopra.tpvol.Ville;
-import sopra.tpvol.Vol;
+import sopra.tpvol.model.Adresse;
+import sopra.tpvol.model.Aeroport;
+import sopra.tpvol.model.Arrivee;
+import sopra.tpvol.model.Avion;
+import sopra.tpvol.model.Civilite;
+import sopra.tpvol.model.Client;
+import sopra.tpvol.model.Compagnie;
+import sopra.tpvol.model.Depart;
+import sopra.tpvol.model.Paiement;
+import sopra.tpvol.model.Particulier;
+import sopra.tpvol.model.Passager;
+import sopra.tpvol.model.Reservation;
+import sopra.tpvol.model.Societe;
+import sopra.tpvol.model.Trajet;
+import sopra.tpvol.model.TypeID;
+import sopra.tpvol.model.TypePaiement;
+import sopra.tpvol.model.Utilisateur;
+import sopra.tpvol.model.Ville;
+import sopra.tpvol.model.Vol;
 
 public class Test {
 	public static void main(String[] args) {

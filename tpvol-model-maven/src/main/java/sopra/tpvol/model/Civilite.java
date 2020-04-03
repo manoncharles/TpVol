@@ -1,4 +1,4 @@
-package sopra.tpvol;
+package sopra.tpvol.model;
 
 public enum Civilite {
 

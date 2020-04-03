@@ -2,7 +2,7 @@ package sopra.tpvol.persistence.jpa;
 
 import java.util.List;
 
-import sopra.tpvol.Arrivee;
+import sopra.tpvol.model.Arrivee;
 import sopra.tpvol.persistence.IArriveeDao;
 
 public class ArriveeDao implements IArriveeDao {

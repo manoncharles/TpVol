@@ -6,21 +6,21 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>sopra.tpvol</groupId>
-	<artifactId>tpvol-persistence-maven</artifactId>
+	<artifactId>tpvol-persistence</artifactId>
 	<version>1.0-SNAPSHOT</version>
 
-	<name>TpVol Persistence Maven</name>
+	<name>TpVol Persistence</name>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 	</properties>
-
+	
 	<dependencies>
 		<dependency>
 			<groupId>sopra.tpvol</groupId>
-			<artifactId>tpvol-model-maven</artifactId>
+			<artifactId>tpvol-model</artifactId>
 			<version>1.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>

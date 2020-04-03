@@ -1,6 +1,6 @@
 package sopra.tpvol.persistence;
 
-import sopra.tpvol.Client;
+import sopra.tpvol.model.Client;
 import sopra.tpvol.persistence.IDao;
 
 

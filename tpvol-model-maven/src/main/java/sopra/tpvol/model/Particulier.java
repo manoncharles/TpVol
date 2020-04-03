@@ -1,4 +1,4 @@
-package sopra.tpvol;
+package sopra.tpvol.model;
 
 import javax.persistence.DiscriminatorValue;
 

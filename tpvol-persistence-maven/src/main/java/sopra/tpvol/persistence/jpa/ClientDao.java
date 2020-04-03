@@ -2,7 +2,7 @@ package sopra.tpvol.persistence.jpa;
 
 import java.util.List;
 
-import sopra.tpvol.Client;
+import sopra.tpvol.model.Client;
 import sopra.tpvol.persistence.IClientDao;
 
 public class ClientDao implements IClientDao {

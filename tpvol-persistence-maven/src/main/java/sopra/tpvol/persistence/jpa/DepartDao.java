@@ -2,7 +2,7 @@ package sopra.tpvol.persistence.jpa;
 
 import java.util.List;
 
-import sopra.tpvol.Depart;
+import sopra.tpvol.model.Depart;
 import sopra.tpvol.persistence.IDepartDao;
 
 public class DepartDao implements IDepartDao {

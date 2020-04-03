@@ -2,10 +2,10 @@ package sopra.tpvol.persistence.jpa;
 
 import java.util.List;
 
-import sopra.tpvol.Aeroport;
-import sopra.tpvol.persistence.IAeoroportDao;
+import sopra.tpvol.model.Aeroport;
+import sopra.tpvol.model.persistence.IAeoroportDao;
 
-public class AeroportDao implements IAeoroportDao {
+public class AeroportDao implements IAeroportDao {
 
 	@Override
 	public List<Aeroport> findAll() {

@@ -1,4 +1,4 @@
-package sopra.tpvol;
+package sopra.tpvol.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,12 +9,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.persistence.Version;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity // obligatoire
-@Table // optionnel
 public class Paiement {
 	@Id // obligatoire
 	@GeneratedValue // optionnel
@@ -26,6 +26,7 @@ public class Paiement {
 	@NotEmpty
 	private Float montant;
 	//@OneToOne(mappedBy = "paiement")
+	@Transient
 	private Reservation reservation;
 	@Version
 	private int version;

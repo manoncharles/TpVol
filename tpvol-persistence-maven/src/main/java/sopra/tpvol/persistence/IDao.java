@@ -10,5 +10,5 @@ public interface IDao<T, PK> {
 
 	T save(T obj);
 
-	void delete(T obj);
+	void delete(T obj);	
 }

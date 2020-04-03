@@ -6,37 +6,18 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
 import sopra.tpvol.Application;
+import sopra.tpvol.model.Paiement;
+import sopra.tpvol.model.TypePaiement;
 
 public class Test {
 
 	public static void main(String[] args) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("tpvol");
-
-		EntityManager em = null;
-		EntityTransaction tx = null;
-
-		try {
-			em = Application.getInstance().getEmf().createEntityManager();
-			tx = em.getTransaction();
-			tx.begin();
-			
-			
-			
-
-			tx.commit();
-		} catch (Exception e) {
-			if (tx != null && tx.isActive()) {
-				tx.rollback();
-			}
-			e.printStackTrace();
-		} finally {
-			if (em != null) {
-				em.close();
-			}
-		}
-
-		emf.close();
-
+		
+		
+		Paiement p2 = new Paiement();
+		p2.setMontant(699.99f);
+		p2.setTypePaiement(TypePaiement.VIREMENT);
+		
+		p2 = Application.getInstance().getPaiementDao().save(p2); // managed
 	}
-
 }

@@ -2,7 +2,7 @@ package sopra.tpvol.persistence.jpa;
 
 import java.util.List;
 
-import sopra.tpvol.Vol;
+import sopra.tpvol.model.Vol;
 import sopra.tpvol.persistence.IVolDao;
 
 public class VolDao implements IVolDao {

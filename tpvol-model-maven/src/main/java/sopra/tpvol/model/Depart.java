@@ -1,4 +1,4 @@
-package sopra.tpvol;
+package sopra.tpvol.model;
 
 import java.util.Date;
 
@@ -12,33 +12,55 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-public class Arrivee {
+public class Depart {
 	@Id
 	@GeneratedValue
 	private Long id;
 	private int Version;
 	@Column(nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date dateArrivee;
+	private Date dateDepart;
 	@ManyToOne
 	@JoinColumn(name = "aeroport_id")
 	private Aeroport Aeroport;
 
-	public Arrivee() {
+	public Depart() {
 		super();
 	}
 
-	public Arrivee(Date dateArrivee) {
+	public Depart(Date dateDepart) {
 		super();
-		this.dateArrivee = dateArrivee;
+		this.dateDepart = dateDepart;
 	}
 
-	public Date getDateArrivee() {
-		return dateArrivee;
+	public Depart(Long id, Date dateDepart) {
+		super();
+		this.id = id;
+		this.dateDepart = dateDepart;
 	}
 
-	public void setDateArrivee(Date dateArrivee) {
-		this.dateArrivee = dateArrivee;
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public int getVersion() {
+		return Version;
+	}
+
+	public void setVersion(int version) {
+		Version = version;
+	}
+
+	public Date getDateDepart() {
+		return dateDepart;
+	}
+
+	public void setDateDepart(Date dateDepart) {
+		this.dateDepart = dateDepart;
 	}
 
 	public Aeroport getAeroport() {
@@ -51,7 +73,7 @@ public class Arrivee {
 
 	@Override
 	public String toString() {
-		return "Arrivee [dateArrivee=" + dateArrivee + ", Aeroport=" + Aeroport + "]";
+		return "Depart [dateDepart=" + dateDepart + ", Aeroport=" + Aeroport + "]";
 	}
 
 }

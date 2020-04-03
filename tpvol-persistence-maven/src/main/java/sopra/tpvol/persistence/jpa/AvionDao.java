@@ -2,7 +2,7 @@ package sopra.tpvol.persistence.jpa;
 
 import java.util.List;
 
-import sopra.tpvol.Avion;
+import sopra.tpvol.model.Avion;
 import sopra.tpvol.persistence.IAvionDao;
 
 public class AvionDao implements IAvionDao {
