@@ -1,5 +1,9 @@
 package sopra.tpvol.persistence;
 
-public interface IClientDao {
+import sopra.tpvol.Client;
+import sopra.tpvol.persistence.IDao;
+
+
+public interface IClientDao extends IDao<Client, Long>{
 
 }
