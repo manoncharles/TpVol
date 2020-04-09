@@ -15,9 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 import javax.persistence.Version;
-import javax.validation.constraints.NotEmpty;
 
 @Entity // obligatoire
 @Table
@@ -25,28 +23,20 @@ public class Passager {
 	@Id // obligatoire
 	@GeneratedValue // optionnel
 	private Long id;
-	@NotEmpty
 	private String nom;
 	private String prenom;
-	@NotEmpty
 	private Date dateDeNaissance;
-	@NotEmpty
 	private String nationalite;
-	@NotEmpty
 	@Enumerated(EnumType.STRING)
 	private Civilite civilite;
-	@NotEmpty
 	private String numeroID;
-	@NotEmpty
 	@Temporal(TemporalType.DATE)
 	private Date dateValiditeID;
-	@NotEmpty
 	@Enumerated(EnumType.STRING)
 	private TypeID typeID;
-	@NotEmpty
 	private Boolean handicap;
 	@ManyToOne
-	@JoinColumn(name= "client_id")
+	@JoinColumn(name = "client_id")
 	private Client client;
 	@OneToMany(mappedBy = "passager")
 	private List<Reservation> reservations = new ArrayList<Reservation>();

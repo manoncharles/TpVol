@@ -3,125 +3,53 @@ package sopra.tpvol.persistence.jpa;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
+import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
-import sopra.tpvol.Application;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
 import sopra.tpvol.model.Aeroport;
 import sopra.tpvol.persistence.IAeroportDao;
 
+@Repository
+@Transactional
 public class AeroportDao implements IAeroportDao {
 
+	@PersistenceContext
+	private EntityManager em;
+
 	@Override
+	@Transactional(readOnly = true)
 	public List<Aeroport> findAll() {
-		List<Aeroport> aeroports = null;
 
-		EntityManager em = null;
-		EntityTransaction tx = null;
+		TypedQuery<Aeroport> query = em.createQuery("from Aeroport", Aeroport.class);
 
-		try {
-			em = Application.getInstance().getEmf().createEntityManager();
-			tx = em.getTransaction();
-			tx.begin();
-
-			TypedQuery<Aeroport> query = em.createQuery("from Aeroport", Aeroport.class);
-
-			aeroports = query.getResultList();
-
-			tx.commit();
-
-		} catch (Exception e) {
-			if (tx != null && tx.isActive()) {
-				tx.rollback();
-			}
-			e.printStackTrace();
-		} finally {
-			if (em != null) {
-				em.close();
-			}
-		}
+		List<Aeroport> aeroports = query.getResultList();
 
 		return aeroports;
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public Aeroport find(Long id) {
-		Aeroport aeroport = null;
 
-		EntityManager em = null;
-		EntityTransaction tx = null;
+		Aeroport aeroport = em.find(Aeroport.class, id);
 
-		try {
-			em = Application.getInstance().getEmf().createEntityManager();
-			tx = em.getTransaction();
-			tx.begin();
-
-			aeroport = em.find(Aeroport.class, id);
-
-			tx.commit();
-		} catch (Exception e) {
-			if (tx != null && tx.isActive()) {
-				tx.rollback();
-			}
-			e.printStackTrace();
-		} finally {
-			if (em != null) {
-				em.close();
-			}
-		}
 		return aeroport;
 	}
 
 	@Override
 	public Aeroport save(Aeroport obj) {
-		Aeroport aeroport = null;
 
-		EntityManager em = null;
-		EntityTransaction tx = null;
+		Aeroport aeroport = em.merge(obj);
 
-		try {
-			em = Application.getInstance().getEmf().createEntityManager();
-			tx = em.getTransaction();
-			tx.begin();
-
-			aeroport = em.merge(obj);
-
-			tx.commit();
-		} catch (Exception e) {
-			if (tx != null && tx.isActive()) {
-				tx.rollback();
-			}
-			e.printStackTrace();
-		} finally {
-			if (em != null) {
-				em.close();
-			}
-		}
 		return aeroport;
 	}
 
 	@Override
 	public void delete(Aeroport obj) {
-		EntityManager em = null;
-		EntityTransaction tx = null;
 
-		try {
-			em = Application.getInstance().getEmf().createEntityManager();
-			tx = em.getTransaction();
-			tx.begin();
-
-			em.remove(em.merge(obj));
-
-			tx.commit();
-		} catch (Exception e) {
-			if (tx != null && tx.isActive()) {
-				tx.rollback();
-			}
-			e.printStackTrace();
-		} finally {
-			if (em != null) {
-				em.close();
-			}
-		}
+		em.remove(em.merge(obj));
 	}
 }
