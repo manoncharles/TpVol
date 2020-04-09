@@ -1,8 +1,5 @@
 package sopra.tpvol.model;
 
-
-
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -10,10 +7,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import javax.persistence.Version;
-import javax.validation.constraints.NotEmpty;
-
 
 @Entity // obligatoire
 @Table
@@ -21,35 +15,31 @@ public class Reservation {
 	@Id // obligatoire
 	@GeneratedValue // optionnel
 	private Long id;
-	@NotEmpty
 	private Boolean annulee;
-	@NotEmpty
 	private Boolean confirmee;
-	@NotEmpty
 	private Boolean ouverte;
-	@NotEmpty
 	private String numeroDeReservation;
 	@OneToOne
-	@JoinColumn(name="paiement_id")
+	@JoinColumn(name = "paiement_id")
 	private Paiement paiement;
 	@OneToOne
-	@JoinColumn(name="trajet_id")
+	@JoinColumn(name = "trajet_id")
 	private Trajet trajet;
 	@ManyToOne
-	@JoinColumn(name= "passenger_id")
+	@JoinColumn(name = "passenger_id")
 	private Passager passager;
 	@ManyToOne
-	@JoinColumn(name= "client_id")
+	@JoinColumn(name = "client_id")
 	private Client client;
 	@Version
 	private int version;
 
-	public Reservation(Boolean annulee,Boolean confirmee,Boolean ouverte,String numeroDeReservation) {
+	public Reservation(Boolean annulee, Boolean confirmee, Boolean ouverte, String numeroDeReservation) {
 		super();
-		this.annulee=annulee;
-		this.confirmee=confirmee;
-		this.ouverte=ouverte;
-		this.numeroDeReservation=numeroDeReservation;
+		this.annulee = annulee;
+		this.confirmee = confirmee;
+		this.ouverte = ouverte;
+		this.numeroDeReservation = numeroDeReservation;
 	}
 
 	public Reservation() {
@@ -139,7 +129,8 @@ public class Reservation {
 	@Override
 	public String toString() {
 		return "Reservation [annulee=" + annulee + ", confirmee=" + confirmee + ", ouverte=" + ouverte
-				+ ", numeroDeReservation=" + numeroDeReservation + ", paiement=" + paiement + ", passager=" + passager + ", client=" + client + "]";
+				+ ", numeroDeReservation=" + numeroDeReservation + ", paiement=" + paiement + ", passager=" + passager
+				+ ", client=" + client + "]";
 	}
 
 }
