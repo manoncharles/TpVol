@@ -6,10 +6,10 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>sopra.tpvol</groupId>
-	<artifactId>tpvol-model-maven</artifactId>
+	<artifactId>tpvol-model</artifactId>
 	<version>1.0-SNAPSHOT</version>
 
-	<name>TpVol Model Maven</name>
+	<name>TpVol Model</name>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
