@@ -1,28 +1,20 @@
 package sopra.tpvol.model;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
-import javax.persistence.Table;
-import javax.persistence.Transient;
 import javax.persistence.Version;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
 @Entity // obligatoire
 public class Paiement {
 	@Id // obligatoire
 	@GeneratedValue // optionnel
 	private Long id;
-		@Enumerated(EnumType.STRING)
-	@NotEmpty
+	@Enumerated(EnumType.STRING)
 	private TypePaiement typePaiement;
-	@NotEmpty
 	private Float montant;
 	@OneToOne(mappedBy = "paiement")
 	private Reservation reservation;
