@@ -3,14 +3,12 @@ package sopra.tpvol.persistence.jpa;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import sopra.tpvol.Application;
 import sopra.tpvol.model.Arrivee;
 import sopra.tpvol.persistence.IArriveeDao;
 

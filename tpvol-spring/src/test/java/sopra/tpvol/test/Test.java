@@ -3,7 +3,8 @@ package sopra.tpvol.test;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import sopra.tpvol.Application;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 import sopra.tpvol.model.Adresse;
 import sopra.tpvol.model.Aeroport;
 import sopra.tpvol.model.Avion;
@@ -39,33 +40,36 @@ public class Test {
 
 	public static void main(String[] args) {
 
-		IAeroportDao aeroportDao = Application.getInstance().getAeroportDao();
+		ClassPathXmlApplicationContext myContext = new ClassPathXmlApplicationContext(
+				"classpath:application-context.xml");
 
-		IArriveeDao arriveeDao = Application.getInstance().getArriveeDao();
+		IAeroportDao aeroportDao = myContext.getBean(IAeroportDao.class);
 
-		IAvionDao avionDao = Application.getInstance().getAvionDao();
+		IArriveeDao arriveeDao = myContext.getBean(IArriveeDao.class);
 
-		ICompagnieDao compagnieDao = Application.getInstance().getCompagnieDao();
+		IAvionDao avionDao = myContext.getBean(IAvionDao.class);
 
-		IDepartDao departDao = Application.getInstance().getDepartDao();
+		ICompagnieDao compagnieDao = myContext.getBean(ICompagnieDao.class);
 
-		IPaiementDao paiementDao = Application.getInstance().getPaiementDao();
+		IDepartDao departDao = myContext.getBean(IDepartDao.class);
 
-		IParticulierDao particulierDao = Application.getInstance().getParticulierDao();
+		IPaiementDao paiementDao = myContext.getBean(IPaiementDao.class);
 
-		IPassagerDao passagerDao = Application.getInstance().getPassagerDao();
+		IParticulierDao particulierDao = myContext.getBean(IParticulierDao.class);
 
-		IReservationDao reservationDao = Application.getInstance().getReservationDao();
+		IPassagerDao passagerDao = myContext.getBean(IPassagerDao.class);
 
-		ISocieteDao societeDao = Application.getInstance().getSocieteDao();
+		IReservationDao reservationDao = myContext.getBean(IReservationDao.class);
 
-		ITrajetDao trajetDao = Application.getInstance().getTrajetDao();
+		ISocieteDao societeDao = myContext.getBean(ISocieteDao.class);
 
-		IUtilisateurDao utilisateurDao = Application.getInstance().getUtilisateurDao();
+		ITrajetDao trajetDao = myContext.getBean(ITrajetDao.class);
 
-		IVilleDao villeDao = Application.getInstance().getVilleDao();
+		IUtilisateurDao utilisateurDao = myContext.getBean(IUtilisateurDao.class);
 
-		IVolDao volDao = Application.getInstance().getVolDao();
+		IVilleDao villeDao = myContext.getBean(IVilleDao.class);
+
+		IVolDao volDao = myContext.getBean(IVolDao.class);
 
 //		System.out.println("___");
 //		Paiement p2 = new Paiement();
@@ -89,15 +93,14 @@ public class Test {
 		particulier1.setNom("Charles");
 		particulier1.setMail("charles.manon@yahoo.com");
 		particulier1.setTelephone("00.11.22.33.44");
-		
+
 		System.out.println(particulier1);
-		
+
 		Adresse adrP1 = new Adresse("21 avenue col Pierre Bourgoin", "résidence M.C", "33127", "Martignas", "France");
 
 		particulier1.setAdresse(adrP1);
-		
+
 		particulier1 = particulierDao.save(particulier1);
-		
 
 		particulier1.setUtilisateur(uti1);
 
@@ -121,7 +124,7 @@ public class Test {
 		Adresse adrS1 = new Adresse("20 avenue Pythagore", " ", "33700", "Mérignac", "France");
 
 		societe1.setAdresse(adrS1);
-		
+
 		societe1 = societeDao.save(societe1);
 
 		societe1.setUtilisateur(uti2);
@@ -204,49 +207,48 @@ public class Test {
 
 // Partie Vol et trajet
 		Compagnie comp1 = new Compagnie("Air France");
-		comp1 = compagnieDao.save(comp1); 
+		comp1 = compagnieDao.save(comp1);
 		System.out.println(comp1);
 
 		Compagnie comp2 = new Compagnie("Air Austral");
-		comp2 = compagnieDao.save(comp2); 
+		comp2 = compagnieDao.save(comp2);
 		System.out.println(comp2);
 
 		Avion a380 = new Avion("Airbus 380");
-		a380 = avionDao.save(a380); 
+		a380 = avionDao.save(a380);
 		System.out.println(comp1);
 
 		Avion b747 = new Avion("Boeing 747");
-		b747 = avionDao.save(b747); 
+		b747 = avionDao.save(b747);
 		System.out.println(comp1);
 
 		Ville paris = new Ville("Paris");
 		paris.setPays("France");
-		paris = villeDao.save(paris); 
+		paris = villeDao.save(paris);
 		System.out.println(paris);
-		
+
 		Ville saintDenis = new Ville("Saint-Denis");
 		saintDenis.setPays("Réunion");
-		saintDenis = villeDao.save(saintDenis); 
+		saintDenis = villeDao.save(saintDenis);
 		System.out.println(paris);
-		
+
 		Ville mamoudzou = new Ville("Mamoudzou");
 		mamoudzou.setPays("Mayotte");
-		mamoudzou = villeDao.save(mamoudzou); 
+		mamoudzou = villeDao.save(mamoudzou);
 		System.out.println(mamoudzou);
 
 		Aeroport roissy = new Aeroport("Roissy Charles de Gaulle");
 		paris.addAeroport(roissy);
 		roissy = aeroportDao.save(roissy);
-		
+
 		roissy.addVille(paris);
-		roissy = aeroportDao.save(roissy); 
+		roissy = aeroportDao.save(roissy);
 		System.out.println(paris);
-		
 
 		Aeroport roland = new Aeroport("Roland Garros");
 		saintDenis.addAeroport(roland);
 		roland = aeroportDao.save(roland);
-		
+
 		roland.addVille(saintDenis);
 		roland = aeroportDao.save(roland);
 		System.out.println(roland);
@@ -254,7 +256,7 @@ public class Test {
 		Aeroport dzaoudzi = new Aeroport("Mamoudzou-Pamandzi");
 		mamoudzou.addAeroport(dzaoudzi);
 		dzaoudzi = aeroportDao.save(dzaoudzi);
-		
+
 		dzaoudzi.addVille(mamoudzou);
 		dzaoudzi = aeroportDao.save(dzaoudzi);
 
@@ -266,9 +268,9 @@ public class Test {
 		parisMamoudzou.setCompagnie(comp1);
 		parisMamoudzou.setOuvert(true);
 		parisMamoudzou.setAvion(a380);
-		
-		parisMamoudzou = volDao.save(parisMamoudzou);
 
+		parisMamoudzou = volDao.save(parisMamoudzou);
+		myContext.close();
 	}
 
 }

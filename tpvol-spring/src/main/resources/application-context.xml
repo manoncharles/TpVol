@@ -26,7 +26,7 @@
 		<property name="url" value="${db.url}" />
 		<property name="username" value="${db.user}" />
 		<property name="password" value="${db.pwd}" />
-		<property name="maxTotal" value="${db.max}" />
+<!-- 		<property name="maxTotal" value="10" /> -->
 	</bean>
 	
 	<!-- On crée un entityManagerFactory local à partir de la dataSource -->
